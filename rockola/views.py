@@ -8,7 +8,7 @@ from rockola.interface import *
 listita = []
 
 def home(request):
-    songs = scan_songs("music/basicsongs")
+    songs = scan_songs("/media/usb")
     print songs
     return render(request, 'index.html', {'songs':songs})
 
