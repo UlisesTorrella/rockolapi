@@ -2,26 +2,47 @@
 
 
 {% block body %}
+
     <h4>Cola de canciones</h4>
-    <ul id="song-available" class="collection">
-    {% for song in songs %}
-        <li id="song-available-element" class="collection-item avatar">
-            <i id="song-available-element-image" class="material-icons circle">folder</i>
-            <span id="song-available-element-title" class="title">{{song.name}}</span>
-            <p id="song-available-element-text">{{song.path}}
-            </p>
-            <a id="song-available-element-upvote" onclick="select_song('{{song.path}}')" class="btn-flat secondary-content">
-                <i class="material-icons">play_circle_filled</i>
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
+    <div id="lista">
+        <ul id="song-available" class="collection">
+        {% for artist in artists %}
+            <li id="song-available-element" class="collection-item avatar">
+                <i id="song-available-element-image" class="material-icons circle">folder</i>
+                <span id="song-available-element-title" class="title">{{artist}}</span>
+                <p id="song-available-element-text">
+                </p>
+                <a id="song-available-element-upvote" onclick="select_artist('{{artist}}',{{ forloop.counter0 }})" class="btn-flat secondary-content">
+                    <i class="material-icons">play_circle_filled</i>
+                </a>
+            </li>
+            <ul id="{{ forloop.counter0 }}-songs">
+
+            </ul>
+        {% endfor %}
+        </ul>
+    </div>
+
 {% endblock %}
 
 
 
 {% block scripts %}
     <script type="text/javascript">
+    function select_artist(artist, index){
+        $.ajax({
+          type: "GET",
+          url: "{% url 'getSongs' %}",
+
+          data: {
+              'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'artist': artist
+          },
+          success: function (result) {
+                $('#' + index + '-songs').html(result);
+            }
+        });
+    }
         function select_song(path){
             $.ajax({
               type: "POST",
@@ -32,7 +53,6 @@
                 'song': path
               },
               success: function(){
-                  alert("bien ahi guacho");
               },
               dataType: "json",
             });
