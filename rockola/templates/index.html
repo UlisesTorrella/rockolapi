@@ -28,13 +28,13 @@
               url: "{% url 'pushSong' %}",
 
               data: {
-                  'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
                 'song': path
               },
               success: function(){
-                  alert("bien ahi guacho");
+                alert("bien ahi guacho");
               },
-              dataType: "json",
+                dataType: "json",
             });
         }
     </script>

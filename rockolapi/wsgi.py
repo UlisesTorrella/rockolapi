@@ -11,6 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from rockola.PlayListThread import PlayListThread
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rockolapi.settings")
 
 application = get_wsgi_application()
+
+cola = PlayListThread()
+cola.setName('Cola')
+cola.start()
+cola.join()
