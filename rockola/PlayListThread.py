@@ -21,4 +21,4 @@ class PlayListThread(Thread):
                 play_song(next_song.path)
             else:
                 print "Moriremos todos!!!!"
-                play_random_song(songs)
+                play_random_song("/media/usb/Alarm01.wav")
