@@ -8,8 +8,6 @@ from rockola.interface import *
 listita = []
 
 
-listita = []
-
 # Create your views here.
 def home(request):
     songs = scan_songs("music/basicsongs")
