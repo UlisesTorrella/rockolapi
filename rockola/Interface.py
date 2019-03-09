@@ -18,6 +18,7 @@ def scan_songs(path):
             genre = tag.genre
             song = Song(title, path, artist, album, genre)
             songs.append(song)
+            print title
     return songs
 
 
