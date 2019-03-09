@@ -1,6 +1,7 @@
 import os
 from Song import *
 import pygame
+from eyed3 import id3
 
 
 def scan_songs(path):
@@ -8,7 +9,13 @@ def scan_songs(path):
     for root, directories, filenames in os.walk(path):
         for filename in filenames:
             path = os.path.join(root, filename)
-            song = Song(filename, path)
+            tag = id3.Tag()
+            tag.parse(path)
+            album = tag.album
+            artist = tag.artist
+            title = tag.title
+            genre = tag.genre
+            song = Song(title, path, artist, album, genre)
             songs.append(song)
     return songs
 
