@@ -32,4 +32,4 @@ def play_song(path):
     pygame.mixer.music.load(path)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        continue
+        pygame.event.wait()
