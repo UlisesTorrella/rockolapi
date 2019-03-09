@@ -1,0 +1,12 @@
+<ul id="song-available" class="collection">
+{% for song in songs %}
+    <li id="song-available-element" class="collection-item avatar">
+        <i id="song-available-element-image" class="material-icons circle">folder</i>
+        <span id="song-available-element-title" class="title">{{song}}</span>
+        <p id="song-available-element-text">
+        </p>
+        <a id="song-available-element-upvote" onclick="select_song('{{song.path}}')" class="btn-flat secondary-content">
+            <i class="material-icons">play_circle_filled</i>
+        </a>
+    </li>
+{% endfor %}

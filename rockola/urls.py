@@ -5,4 +5,5 @@ import rockola.views as views
 urlpatterns = [
     url(r'^$', views.home),
     url(r'/push_song', views.pushSong,name='pushSong'),
+    url(r'/get_songs', views.getSongs,name='getSongs'),
 ]
