@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from rockola.interface import *
 
+listita = []
+
 def home(request):
     songs = scan_songs("music/basicsongs")
     print songs
@@ -13,8 +15,11 @@ def home(request):
 def pushSong(request):
     print "puto el que lee"
     if request.POST:
-        print request.POST['song']
-        play_song("../" + request.POST['song']);
-        return HttpResponse('andando');
+        #return HttpResponse(request.song);
+        play_song(request.POST['song'])
+        #Esto deberia ser algo asi supongo
+        #  tmp = Globito(findSongByPath(request.POST.song),request.POST.macAdress);
+        #  listita.append(tmp);
+        return HttpResponse(200)
     else:
-        return HttpResponse('no andando');
+        return HttpResponse(400)
