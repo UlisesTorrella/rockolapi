@@ -2,10 +2,21 @@
 
 
 {% block body %}
+    <h4>Cola de canciones</h4>
+    <ul id="song-available" class="collection">
     {% for song in songs %}
-        <br>{{song.name}}<br> <button onclick="select_song({{song.path}})"></button>
+        <li id="song-available-element" class="collection-item avatar">
+            <i id="song-available-element-image" class="material-icons circle">folder</i>
+            <span id="song-available-element-title" class="title">{{song.name}}</span>
+            <p id="song-available-element-text">{{song.path}}
+            </p>
+            <a id="song-available-element-upvote" onclick="select_song('{{song.path}}')" class="btn-flat secondary-content">
+                <i class="material-icons">play_circle_filled</i>
+            </a>
+        </li>
     {% endfor %}
-{% endblock %}
+    </ul>
+
 
 
 {% block scripts %}
@@ -14,8 +25,9 @@
             $.ajax({
               type: "POST",
               url: "{% url 'pushSong' %}",
-              csrfmiddlewaretoken: '{{ csrf_token }}',
+
               data: {
+                  'csrfmiddlewaretoken': '{{ csrf_token }}',
                 'song': path
               },
               success: function(){
