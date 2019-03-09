@@ -5,11 +5,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from rockola.interface import *
 
+
+SONGSFOLDER = "music/basicsongs"
 listita = []
 
+artists = {}
+
+songs = scan_songs(SONGSFOLDER)
+
 def home(request):
-    songs = scan_songs("music/basicsongs")
-    print songs
     return render(request, 'index.html', {'songs':songs})
 
 def pushSong(request):
