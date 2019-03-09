@@ -1,6 +1,7 @@
 import os
 from Song import *
 import pygame
+from Xlib.Xcursorfont import clock
 from eyed3 import id3
 import random
 
@@ -31,5 +32,6 @@ def play_song(path):
     pygame.mixer.init()
     pygame.mixer.music.load(path)
     pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy() == True:
-        pygame.event.wait()
+    while pygame.mixer.music.get_busy():
+        print("Playing...")
+        clock.tick(1000)
