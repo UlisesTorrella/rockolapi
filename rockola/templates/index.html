@@ -2,6 +2,27 @@
 
 
 {% block body %}
-    Amo mi cuerpo amo mi body
+    {% for song in songs %}
+        <br>{{song.name}}<br> <button onclick="select_song({{song.path}})"></button>
+    {% endfor %}
+{% endblock %}
 
+
+{% block scripts %}
+    <script type="text/javascript">
+        function select_song(path){
+            $.ajax({
+              type: "POST",
+              url: "{% url 'pushSong' %}",
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              data: {
+                'song': path
+              },
+              success: function(){
+                  alert("bien ahi guacho");
+              },
+              dataType: "json",
+            });
+        }
+    </script>
 {% endblock %}
