@@ -11,7 +11,7 @@ class PlayListThread(Thread):
 
     def run(self):
         print "here im 1"
-        songs = scan_songs("/media/usb")
+        #songs = scan_songs("/media/usb")
         print "here im 2"
         while True:
             if Queue.hasNext():
