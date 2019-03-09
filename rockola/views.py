@@ -24,6 +24,7 @@ def pushSong(request):
         #Esto deberia ser algo asi supongo
         globo = Blob(request.POST['song'],[1])
         addBlob(globo)
+
         return HttpResponse(200)
     else:
         return HttpResponse(400)

@@ -14,6 +14,8 @@ class PlayListThread(Thread):
         #songs = scan_songs("/media/usb")
         print "here im 2"
         while True:
+            print Queue.hasNext()
+            print Queue.queue
             if Queue.hasNext():
                 print "Hay next"
                 next_blob = Queue.getNext()
