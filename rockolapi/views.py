@@ -6,4 +6,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("no esta hecho")
+    return HttpResponse("Aca linkeamos las apps")

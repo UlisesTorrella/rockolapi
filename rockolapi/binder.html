@@ -1,0 +1,79 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Mis cargas</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="getting-started">
+
+	<ion-navbar>
+		<ion-title>Creadas:</ion-title>
+	</ion-navbar>
+	<ion-row *ngFor="let sol of solicitudes_mias | async">
+		<ion-card (click)="openModal({solicitud: sol})" [ngStyle]="{'background-color': sol.taken ? '#8fba5f' : '#5f8fba' }" class="animated bounceInDown">
+
+		  <!-- img src="assets/img/advance-card-bttf.png"-->
+		  <ion-badge [hidden]="!sol.arrived" color="secondary">TERMINADO</ion-badge>
+		  <ion-badge [hidden]="!sol.ontheroad" color="secondary">En Camino</ion-badge>
+
+		  <ion-item class="back-transparent">
+			<ion-icon name="locate" item-start large></ion-icon>
+			<h2>Desde:</h2>
+			<p>{{sol.info.origen}}</p>
+		  </ion-item>
+
+		  <ion-item class="back-transparent">
+			<ion-icon name="navigate" item-start large ></ion-icon>
+			<h2>Hasta:</h2>
+			<p>{{sol.info.destino}}</p>
+		  </ion-item>
+
+		  <ion-item class="back-transparent">
+			<span item-start>{{sol.info.carga_tipo}}, {{sol.info.carga_peso}}</span>
+			<span item-start>(Blabla Km)</span>
+			<button ion-button icon-start clear item-end>
+			  <ion-icon name="navigate"></ion-icon>
+			  Start
+			</button>
+		  </ion-item>
+
+		</ion-card>
+	</ion-row>
+	<ion-navbar>
+		<ion-title>Tomadas:</ion-title>
+	</ion-navbar>
+	<ion-row *ngFor="let sol of solicitudes_tomadas | async">
+		<ion-card (click)="openModal({solicitud: sol})" [ngStyle]="{'background-color': sol.taken ? '#8fba5f' : '#5f8fba' }" class="animated bounceInUp">
+
+		  <!-- img src="assets/img/advance-card-bttf.png"-->
+		  <ion-badge [hidden]="!sol.arrived" color="secondary">TERMINADO</ion-badge>
+		  <ion-badge [hidden]="!sol.ontheroad" color="secondary">En Camino</ion-badge>
+
+		  <ion-item class="back-transparent">
+			<ion-icon name="locate" item-start large></ion-icon>
+			<h2>Desde:</h2>
+			<p>{{sol.info.origen}}</p>
+		  </ion-item>
+
+		  <ion-item class="back-transparent">
+			<ion-icon name="navigate" item-start large ></ion-icon>
+			<h2>Hasta:</h2>
+			<p>{{sol.info.destino}}</p>
+		  </ion-item>
+
+		  <ion-item class="back-transparent">
+			<span item-start> {{sol.info.carga_peso}} {{sol.info.carga_unit}} de {{sol.info.carga_tipo}}</span>
+			<span item-start>(Blabla Km)</span>
+			<button ion-button icon-start clear item-end>
+			  <ion-icon name="navigate"></ion-icon>
+			  Start
+			</button>
+		  </ion-item>
+
+		</ion-card>
+	</ion-row>
+
+</ion-content>
