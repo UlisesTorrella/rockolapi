@@ -9,5 +9,6 @@ def getNext():
     queue.sort()
     return queue.pop(0)
 
+
 def hasNext():
     return len(queue) != 0
