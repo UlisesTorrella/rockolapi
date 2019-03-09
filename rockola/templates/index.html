@@ -3,7 +3,7 @@
 
 {% block body %}
     {% for song in songs %}
-        <br>{{song.name}}<br> <button onclick="select_song({{song.path}})"></button>
+        <br>{{song.name}}<br> <button onclick="select_song('{{song.path}}')"></button>
     {% endfor %}
 {% endblock %}
 
@@ -14,8 +14,9 @@
             $.ajax({
               type: "POST",
               url: "{% url 'pushSong' %}",
-              csrfmiddlewaretoken: '{{ csrf_token }}',
+
               data: {
+                  'csrfmiddlewaretoken': '{{ csrf_token }}',
                 'song': path
               },
               success: function(){
